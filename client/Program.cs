@@ -11,18 +11,30 @@ namespace client
     internal class Program
     {
         const short port = 6666;
+        const string IpAddress = "192.168.3.48";
         static void Main(string[] args)
         {
-            IPEndPoint serverEndPoint=new IPEndPoint(IPAddress.Parse("192.168.3.48"), port);
+            UdpClient udpClient = new UdpClient();
 
-            UdpClient client = new UdpClient();
+            // create server endpoint
+            IPEndPoint endPoint = new IPEndPoint(IPAddress.Parse(IpAddress), port);
 
-            Console.WriteLine("Enter a message: ");
-            string message=Console.ReadLine();
+            string message = string.Empty;
+            do
+            {
+                // write a message from keyboard
+                Console.Write("Enter a region number (enter 'END' to exit): ");
+                message = Console.ReadLine();
 
-            byte[]data=Encoding.UTF8.GetBytes(message);
+                // create byte array to send
+                byte[] data = Encoding.UTF8.GetBytes(message);
 
-            client.Send(data, data.Length, serverEndPoint);
+                // send data to the server
+                udpClient.Send(data, data.Length, endPoint);
+
+            } while (message != "END");
+
+            Console.WriteLine("Closing the client application...");
         }
     }
 }
