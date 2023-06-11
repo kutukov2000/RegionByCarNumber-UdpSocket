@@ -23,17 +23,17 @@ namespace server
 
             return match.Success || match2.Success;
         }
-        public void FindRegion(string message)
+        public string FindRegion(string message)
         {
             if (CheckNumber(message.ToUpper()))
             {
                 if (CarNumbers.ContainsKey(message.ToUpper().Substring(0, 2)))
-                    Console.WriteLine($"Number: {message.ToUpper()} Region: {CarNumbers[message.ToUpper().Substring(0, 2)]}\n");
+                    return $"Number: {message.ToUpper()} Region: {CarNumbers[message.ToUpper().Substring(0, 2)]}\n";
                 else
-                    Console.WriteLine("Incorrect Number\n");
+                    return "Incorrect Number\n";
             }
             else
-                Console.WriteLine("Incorrect Number\n");
+                return "Incorrect Number\n";
         }
     }
 }

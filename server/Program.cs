@@ -30,7 +30,10 @@ namespace server
 
                 string message = Encoding.UTF8.GetString(request);
 
-                carNumberRegionResolver.FindRegion(message);
+                // send response to the client
+                string responseMsg = carNumberRegionResolver.FindRegion(message);
+                byte[] responseData = Encoding.UTF8.GetBytes(responseMsg);
+                server.Send(responseData,responseData.Length, clientEndPoint);
             }
         }
     }

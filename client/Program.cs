@@ -32,6 +32,11 @@ namespace client
                 // send data to the server
                 udpClient.Send(data, data.Length, endPoint);
 
+                // wait for the response
+                byte[] responseData = udpClient.Receive(ref endPoint);
+                string response = Encoding.UTF8.GetString(responseData);
+                Console.WriteLine(response);
+
             } while (message != "END");
 
             Console.WriteLine("Closing the client application...");
