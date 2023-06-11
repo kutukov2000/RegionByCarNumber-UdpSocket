@@ -16,10 +16,12 @@ namespace server
         private bool CheckNumber(string message)
         {
             string pattern = @"^[A-Z]{2}\d{4}[A-Z]{2}$";
+            string pattern2 = @"^[A-Z]{2}$";
 
             Match match = Regex.Match(message, pattern);
+            Match match2 = Regex.Match(message, pattern2);
 
-            return match.Success;
+            return match.Success || match2.Success;
         }
         public void FindRegion(string message)
         {
