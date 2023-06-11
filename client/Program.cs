@@ -23,7 +23,7 @@ namespace client
             do
             {
                 // write a message from keyboard
-                Console.Write("Enter a region number (enter 'END' to exit): ");
+                Console.Write("Enter a car number (enter 'END' to exit): ");
                 message = Console.ReadLine();
 
                 // create byte array to send
